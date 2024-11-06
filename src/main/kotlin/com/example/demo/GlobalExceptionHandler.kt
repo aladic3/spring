@@ -22,4 +22,8 @@ class GlobalExceptionHandler {
         return ResponseEntity("An error occurred: ${e.message}",
             org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR)
     }
+    @ExceptionHandler(UsernameNotFoundException::class)
+    fun handleUsernameNotFoundException(e: UsernameNotFoundException): ResponseEntity<String> {
+        return ResponseEntity(e.message, org.springframework.http.HttpStatus.NOT_FOUND)
+    }
 }
