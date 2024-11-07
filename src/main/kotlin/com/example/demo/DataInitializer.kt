@@ -1,7 +1,7 @@
 package com.example.demo
 
 import jakarta.annotation.PostConstruct
-import org.springframework.context.annotation.Bean
+
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
 

@@ -2,17 +2,14 @@ package com.example.demo
 
 
 import org.springframework.context.annotation.*
-import org.springframework.security.authentication.AuthenticationManager
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration
-import org.springframework.security.config.annotation.web.WebSecurityConfigurer
+
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
-import org.springframework.security.core.userdetails.User
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
-import org.springframework.security.provisioning.InMemoryUserDetailsManager
+
 import org.springframework.security.web.SecurityFilterChain
 
 
@@ -32,7 +29,7 @@ class SecurityConfig(private val customUserDetailsService: CustomUserDetailsServ
                     .anyRequest().authenticated()
             }
             .formLogin { formLogin ->
-                formLogin.defaultSuccessUrl("/", false)
+                formLogin.defaultSuccessUrl("/", true)
 
 
             }
@@ -65,9 +62,9 @@ class SecurityConfig(private val customUserDetailsService: CustomUserDetailsServ
 
          // Используем AuthenticationConfiguration для получения AuthenticationManager
          // Метод configure для настройки AuthenticationManagerBuilder
-         fun configure(auth: AuthenticationManagerBuilder) {
+        /* fun configure(auth: AuthenticationManagerBuilder) {
              auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder())
          }
-
+*/
 
 }
