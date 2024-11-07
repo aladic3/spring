@@ -26,10 +26,13 @@ class SecurityConfig(private val customUserDetailsService: CustomUserDetailsServ
                 auth
                     .requestMatchers("/admin/**").hasRole("ADMIN")
                     .requestMatchers("/books/**").hasRole("USER")
+                    .requestMatchers("/login", "/").permitAll()
                     .anyRequest().authenticated()
+
             }
             .formLogin { formLogin ->
                 formLogin.defaultSuccessUrl("/", true)
+                formLogin.loginPage("/login")
 
 
             }
@@ -38,6 +41,9 @@ class SecurityConfig(private val customUserDetailsService: CustomUserDetailsServ
             }
             .sessionManagement { sessionManagement ->
                 sessionManagement.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+            }
+            .oauth2Login{oauth2Login ->
+                oauth2Login.defaultSuccessUrl("/", true)
             }
 
         http.csrf{csrf -> csrf.disable()} // Отключаем CSRF

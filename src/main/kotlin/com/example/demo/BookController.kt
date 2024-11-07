@@ -20,8 +20,6 @@ class BookController (private val bookService: BookService) {
 
     @PostMapping
     fun addBook(@RequestBody book: Book): ResponseEntity<String>  {
-
-
         return bookService.addBook(book)
     }
 
