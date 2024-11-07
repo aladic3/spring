@@ -6,8 +6,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/books")
-class BookController (
-                      private val bookService: BookService) {
+class BookController (private val bookService: BookService) {
 
 
 
@@ -20,22 +19,25 @@ class BookController (
 
 
     @PostMapping
-    fun addBook(@RequestBody book: Book): ResponseEntity<String> {
+    fun addBook(@RequestBody book: Book): ResponseEntity<String>  {
+
+
         return bookService.addBook(book)
-    }
-    @PostMapping("/addBooks")
-    fun addBooks(@RequestBody books: List<Book>): ResponseEntity<List<Book>> {
-        return bookService.addBooks(books)
     }
 
     @PutMapping("/{id}")
     fun updateBook(@PathVariable id: Long, @RequestBody book: Book): ResponseEntity<String> {
         return bookService.updateBook(id, book)
+
+
     }
 
     @DeleteMapping("/{id}")
     fun deleteBook(@PathVariable id:Long): ResponseEntity<String> {
+
+
         return bookService.deleteBook(id)
+
     }
 
     @GetMapping("/search/title")
@@ -44,7 +46,7 @@ class BookController (
     }
     @GetMapping("/search/author")
     fun getBookByAuthor(@RequestParam author: String): List<Book> {
-       return bookService.getBookByAuthor(author)
+        return bookService.getBookByAuthor(author)
     }
 
 }
