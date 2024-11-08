@@ -2,9 +2,6 @@ package com.example.demo
 
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestParam
 
 @Service
 class BookService(private val bookRepository: BookRepository) {
@@ -17,7 +14,14 @@ class BookService(private val bookRepository: BookRepository) {
         return ResponseEntity.ok("Book added successfully")
     }
     fun addBooks(books: List<Book>): ResponseEntity<List<Book>> {
-        return ResponseEntity.ok(bookRepository.saveAll(books))
+        books.forEach {
+            if (bookRepository.existsById(it.id)) {
+                throw BookAlreadyExistsException(it.id)
+            } else {
+                bookRepository.save(it)
+            }
+        }
+        return ResponseEntity.ok(books)
     }
     fun getBooks() = bookRepository.findAll()
 

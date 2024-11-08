@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+<h2>Login</h2>
+<form id="loginForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <button type="submit">Login</button>
+</form>
+
+<script>
+    document.getElementById("loginForm").addEventListener("submit", async function(event) {
+        event.preventDefault(); // Prevents the form from submitting the traditional way
+
+        // Get values from form inputs
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        try {
+            // Send POST request to authenticate
+            const response = await fetch("/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ username, password })
+            });
+
+            if (response.ok) {
+                // Parse response JSON to get the token
+                const data = await response.json();
+                const token = data.token;
+
+                // Save the token in localStorage
+                localStorage.setItem("jwtToken", token);
+
+                alert("Login successful!");
+                // Redirect to a protected page or other content
+                window.location.href = "/protectedPage";
+            } else {
+                alert("Login failed. Please check your credentials.");
+            }
+        } catch (error) {
+            console.error("Error during login:", error);
+            alert("An error occurred during login. Please try again.");
+        }
+    });
+</script>
+</body>
+</html>

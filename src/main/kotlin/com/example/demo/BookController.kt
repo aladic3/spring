@@ -17,12 +17,16 @@ class BookController (private val bookService: BookService) {
         return bookService.getBookById(id)
     }
 
-
     @PostMapping
-    fun addBook(@RequestBody book: Book): ResponseEntity<String>  {
-
-
+    fun addBook(@RequestBody book: Book): ResponseEntity<String> {
         return bookService.addBook(book)
+    }
+
+
+    @PostMapping("/addBooks")
+    fun addBooks(@RequestBody books: List<Book>): ResponseEntity<String>  {
+
+        return ResponseEntity.ok(bookService.addBooks(books).toString())
     }
 
     @PutMapping("/{id}")
