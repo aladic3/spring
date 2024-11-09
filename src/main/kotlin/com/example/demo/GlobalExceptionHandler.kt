@@ -19,6 +19,7 @@ class GlobalExceptionHandler {
     }
     @ExceptionHandler(Exception::class)
     fun handleException(e: Exception): ResponseEntity<String> {
+        e.printStackTrace()
         return ResponseEntity("An error occurred: ${e.message}" , org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR)
 
 

@@ -16,7 +16,7 @@ class AuthController(private val jwtUtil: JwtUtil, private val customUserDetails
     fun login(@RequestBody loginRequest: LoginRequest): ResponseEntity<Any> {
         val user = customUserDetailsService.loadUserByUsername(loginRequest.username)
         if (passwordEncoder.matches(loginRequest.password, user.password)) {
-            val token = jwtUtil.generateToken(user)
+            val token = jwtUtil.generateToken(user.username)
             return ResponseEntity.ok(mapOf("token" to token))
         }
         return ResponseEntity.status(401).build()
