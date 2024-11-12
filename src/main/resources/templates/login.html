@@ -25,6 +25,7 @@
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
 
+
         try {
             // Send POST request to authenticate
             const response = await fetch("/login", {
@@ -45,7 +46,21 @@
 
                 alert("Login successful!");
                 // Redirect to a protected page or other content
-                window.location.href = "/protectedPage";
+                const response1 = await fetch("/books", {
+                    method: "GET",
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                });
+
+                if (response1.ok) {
+                    const books = await response1.json();
+                    console.log("Books:", books);
+                    console.log("Token:", token);
+                    alert("Books loaded successfully.");
+                } else {
+                    alert("Failed to load books page.");
+                }
             } else {
                 alert("Login failed. Please check your credentials.");
             }

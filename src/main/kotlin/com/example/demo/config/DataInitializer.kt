@@ -1,5 +1,7 @@
-package com.example.demo
+package com.example.demo.config
 
+import com.example.demo.model.User
+import com.example.demo.repository.UserRepository
 import jakarta.annotation.PostConstruct
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component

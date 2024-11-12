@@ -1,4 +1,4 @@
-package com.example.demo
+package com.example.demo.exeption
 
 class BookNotFoundException (id: Long) : RuntimeException("Book with id $id not found")
 class BookNotFoundByAuthorException (author: String) :  RuntimeException("Book with author $author not found")

@@ -1,7 +1,8 @@
-package com.example.demo
+package com.example.demo.controller
+import com.example.demo.model.Book
+import com.example.demo.service.BookService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-
 
 
 @RestController

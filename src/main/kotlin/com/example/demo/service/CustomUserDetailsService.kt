@@ -1,5 +1,7 @@
-package com.example.demo
+package com.example.demo.service
 
+import com.example.demo.exeption.UsernameNotFoundException
+import com.example.demo.repository.UserRepository
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Service
 

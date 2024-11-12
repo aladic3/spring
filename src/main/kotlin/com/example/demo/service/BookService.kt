@@ -1,5 +1,11 @@
-package com.example.demo
+package com.example.demo.service
 
+import com.example.demo.exeption.BookAlreadyExistsException
+import com.example.demo.exeption.BookNotFoundByAuthorException
+import com.example.demo.exeption.BookNotFoundByTitleException
+import com.example.demo.exeption.BookNotFoundException
+import com.example.demo.model.Book
+import com.example.demo.repository.BookRepository
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 

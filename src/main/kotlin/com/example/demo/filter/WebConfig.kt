@@ -1,4 +1,4 @@
-package com.example.demo
+package com.example.demo.filter
 /*import org.springframework.stereotype.Component
 import javax.servlet.Filter
 import javax.servlet.FilterChain
